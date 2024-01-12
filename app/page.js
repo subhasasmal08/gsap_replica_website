@@ -1,34 +1,9 @@
 "use client";
-import { useRef, useEffect } from "react";
-import { Power2, gsap } from "gsap";
+import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
 function App() {
   gsap.registerPlugin(ScrollTrigger);
-  useEffect(() => {
-    cursor();
-  }, []);
-
-  const cursor = () => {
-    const follower = document.querySelector(".follower");
-    document.onmousemove = function (e) {
-      gsap.to(follower, 0.6, {
-        left: e.clientX,
-        top: e.clientY,
-        ease: Power2.easeOut,
-      });
-      // gsap.to(follower, 0.6, { left: e.clientX, top: e.clientY, ease: Elastic.easeOut});
-      let id = document.getElementById("follower");
-      if (e.target.id == "link") {
-        id.style.background = "#B4D4FF";
-        id.style.zIndex = "-2";
-        gsap.to(follower, 0.3, { width: 50, height: 50 });
-      } else {
-        id.style.background = "darkblue";
-        id.style.zIndex = "-1";
-        gsap.to(follower, 0.3, { width: 10, height: 10 });
-      }
-    };
-  };
 
   function LandingPageScrollTrigger() {
     gsap.to("body", {
@@ -62,9 +37,73 @@ function App() {
   window.onload = () => {
     LandingPageScrollTrigger();
   };
+  const inputRef = useRef();
+
+  function submit(e) {
+    const data = {};
+
+    e.preventDefault();
+
+    let id = document.querySelectorAll("input");
+    id.forEach((userItem) => {
+      let name = userItem.name.split(".");
+      console.log(name[1]);
+      if (name[1] !== undefined) {
+        if (name[2] !== undefined) {
+          console.log("2")
+          data[name[0]] = {
+            [name[1]]: {
+              [name[2]]: userItem.value,
+            },
+          };
+        } else if(name[2] !== undefined) {
+          console.log(name[1], "1")
+          data[name[0]] = {
+            [name[1]]: userItem.value,
+          };
+        }
+      } else {
+        data[name[0]] = userItem.value;
+      }
+    });
+    let output = {
+      foo: {
+        bat: "val", //Actual value of 1st text box
+        bar: {
+          baz: "val", // Value of 2nd text box
+        },
+      },
+      fizz: "val", // Value of 3rd text box
+    };
+    console.log(data);
+    console.log( output);
+  }
+
   return (
     <div id="ImgWrapper">
-      <div className="follower" id="follower"></div>
+      {/* <form id="parent" ref={inputRef} onSubmit={submit}>
+        <input
+          id={"p"}
+          type="text"
+          name="foo.bat"
+          onChange={(e) => console.log(e.target.value)}
+        />
+        <input
+          id={"p"}
+          type="text"
+          name="foo.bar.baz"
+          onChange={(e) => console.log(e.target.value)}
+        />
+        <input
+          id={"p"}
+          type="text"
+          name="fizz"
+          onChange={(e) => console.log(e.target.value)}
+        />
+        <button className="submit_btn" type="submit" value="Send">
+          submit
+        </button>
+      </form> */}
       <video
         // controls
         autoPlay
@@ -96,9 +135,9 @@ function App() {
       <video
         // controls
         autoPlay
-        preload="none"
+        // preload="none"
         muted="muted"
-        playsInline
+        // playsInline
         loop
         style={{ objectFit: "cover" }}
         src={
