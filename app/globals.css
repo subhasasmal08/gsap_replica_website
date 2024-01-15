@@ -1,3 +1,4 @@
+@import url(https://db.onlinewebfonts.com/c/4c4c08af466e9ad071b6d69cf44093df?family=SaolDisplay);
 * {
   padding: 0%;
   margin: 0%;
@@ -10,107 +11,44 @@
   height: 10px;
   background: red;
   border-radius: 50%;
+  z-index: 100;
+}
+.follower_play_btn {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar {
   display: none;
 }
-
-#ImgWrapper {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  perspective: 2200px;
+:root {
+  --font-primary: "SaolDisplay", Times, Georgia, serif;
+  --font-secondary: "Inter", Impact, Helvetica, Arial, sans-serif;
+  --bg-white: #fff;
+  --bg-dark: #060707;
+  --bg-black: #000;
+  --bg-red: #bf1826;
+  --bg-lightgray: #f5f5f5;
+  --color-white: #fff;
+  --color-light: #ddd;
+  --color-red: #bf1826;
+  --color-grey: #b2b2b2;
+  --color-medium: #747474;
+  --color-dark: #0e0e0d;
+  --color-black: #000;
+  -ms-scrollbar-arrow-color: #212129;
+  --ease-in-out: cubic-bezier(0.895, 0, 0.18, 1);
+  --ease-out: cubic-bezier(0.05, 0.76, 0.38, 1.015);
+  --shadow: 0px 5px 5px #ececec;
 }
-
-#ImgWrapper #img1 {
-  z-index: 1;
-  height: 50vh;
-  bottom: 30%;
-  left: -37%;
-  position: absolute;
-}
-
-#ImgWrapper #img2 {
-  z-index: 1;
-  height: 50vh;
-  bottom: 30%;
-  right: -39%;
-  position: absolute;
-}
-
-#ImgWrapper #img3 {
-  z-index: 3;
-  height: 25vh;
-  bottom: 61%;
-  right: 8%;
-  width: 23vw;
-  position: absolute;
-}
-
-#ImgWrapper #img4 {
-  width: 23vw;
-  z-index: 4;
-  height: 30vh;
-  bottom: 57%;
-  left: 10%;
-  position: absolute;
-}
-
-#ImgWrapper #img5 {
-  z-index: 5;
-  height: 75vh;
-  width: 30vw;
-  bottom: 22%;
-  left: 36%;
-  position: absolute;
-}
-
-#ImgWrapper #img6 {
-  width: 23vw;
-  z-index: 6;
-  height: 25vh;
-  bottom: 24%;
-  left: 10%;
-  position: absolute;
-}
-
-#ImgWrapper #img7 {
-  z-index: 7;
-  height: 30vh;
-  width: 23vw;
-  bottom: 25%;
-  right: 8%;
-  position: absolute;
-}
-
-#end {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#end a {
-  text-decoration: none;
-  font-size: var(--FontH5);
-  font-weight: 400;
-  color: var(--ColorWhiteB);
-}
-
-#end a span {
-  font-weight: 700;
-  display: inline-block;
-  color: var(--ColorWhiteA);
-}
-
-/*-------------@media (max-width: 1920px)------------- */
 
 @media (max-width: 1920px) {
   :root {
-    /*-------------FontSize (PX to VW Conversion With Viewport Width 1920px)------------- */
     --FontH1: 12.148vw;
     --FontH2: 7.508vw;
     --FontH3: 4.641vw;
@@ -118,7 +56,6 @@
     --FontH5: 1.772vw;
     --FontParagraph: 1.095vw;
     --FontSubtitle: 0.677vw;
-    /*-------------GoldenRatio (1.618) (Viewport Width 1920px)------------- */
     --GoldenRatio1: 100vw;
     --GoldenRatio2: 61.805vw;
     --GoldenRatio3: 38.198vw;
@@ -132,13 +69,8 @@
   }
 }
 
-/*-------------/@media (max-width: 1920px)------------- */
-
-/*-------------@media (max-width: 400px)------------- */
-
 @media (max-width: 400px) {
   :root {
-    /*-------------GoldenRatio (1.618) (Viewport Width 400px) Base Size 13px------------- */
     --FontH1: 58.313vw;
     --FontH2: 36.04vw;
     --FontH3: 22.275vw;
@@ -146,7 +78,6 @@
     --FontH5: 8.508vw;
     --FontParagraph: 5.258vw;
     --FontSubtitle: 3.25vw;
-    /*-------------GoldenRatio (1.618) (Viewport Width 400px)------------- */
     --GoldenRatio1: 100vw;
     --GoldenRatio2: 61.805vw;
     --GoldenRatio3: 38.197vw;
@@ -199,4 +130,148 @@
   }
 }
 
-/*-------------/@media (max-width: 400px)------------- */
+.main_page_wrapper {
+  .main_page_desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    .desc_ {
+      font-family: var(--font-primary);
+      color: #0e0e0d;
+      font-size: 2.73vw;
+      line-height: 1.1;
+      overflow: hidden;
+      margin-top: 3.8vw;
+      margin-bottom: 4.5vw;
+      text-align: center;
+      width: 56vw;
+    }
+    .country_ {
+      font-family: var(--font-primary);
+      color: #0e0e0d;
+      font-size: 7vw;
+      text-transform: uppercase;
+      line-height: 0.8;
+      font-style: italic;
+      line-height: 1.1;
+      overflow: hidden;
+      margin-top: 3.8vw;
+      text-align: center;
+      width: 56vw;
+      position: absolute;
+      top: 67%;
+      right: 21%;
+      z-index: 1;
+    }
+  }
+
+  #ImgWrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    perspective: 2200px;
+  }
+
+  #ImgWrapper #img1 {
+    z-index: 1;
+    height: 50vh;
+    bottom: 30%;
+    left: -37%;
+    position: absolute;
+  }
+
+  #ImgWrapper #img2 {
+    z-index: 1;
+    height: 50vh;
+    bottom: 30%;
+    right: -39%;
+    position: absolute;
+  }
+
+  #ImgWrapper #img3 {
+    z-index: 3;
+    height: 25vh;
+    bottom: 61%;
+    right: 8%;
+    width: 23vw;
+    position: absolute;
+  }
+
+  #ImgWrapper #img4 {
+    width: 23vw;
+    z-index: 4;
+    height: 30vh;
+    bottom: 57%;
+    left: 10%;
+    position: absolute;
+  }
+
+  #ImgWrapper #img5 {
+    z-index: 5;
+    height: 75vh;
+    width: 30vw;
+    bottom: 5%;
+    left: 36%;
+    position: absolute;
+  }
+
+  #ImgWrapper #img6 {
+    width: 23vw;
+    z-index: 6;
+    height: 25vh;
+    bottom: 24%;
+    left: 10%;
+    position: absolute;
+  }
+
+  #ImgWrapper #img7 {
+    z-index: 7;
+    height: 30vh;
+    width: 23vw;
+    bottom: 25%;
+    right: 8%;
+    position: absolute;
+  }
+
+  #end {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #end div {
+    text-decoration: none;
+    font-weight: 400;
+  }
+
+  #end div span {
+    font-weight: 700;
+    display: inline-block;
+  }
+  .video_player_wrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    .about_ {
+      color: #bf1826;
+      margin-bottom: 6.5vw;
+    }
+    .video_ {
+      position: relative;
+      width: 50vw;
+      height: 30vw;
+    }
+    .play_btn {
+      position: absolute;
+    }
+  }
+}

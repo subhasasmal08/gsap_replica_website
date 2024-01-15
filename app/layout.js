@@ -20,6 +20,8 @@ export default function RootLayout({ children }) {
   const cursor = () => {
     const follower = document.querySelector(".follower");
     document.onmousemove = function (e) {
+      console.log(e.target.id);
+
       gsap.to(follower, 0.6, {
         left: e.clientX,
         top: e.clientY,
@@ -27,13 +29,17 @@ export default function RootLayout({ children }) {
       });
       // gsap.to(follower, 0.6, { left: e.clientX, top: e.clientY, ease: Elastic.easeOut});
       let id = document.getElementById("follower");
-      if (e.target.id == "link") {
-        id.style.background = "#B4D4FF";
-        id.style.zIndex = "-2";
-        gsap.to(follower, 0.3, { width: 50, height: 50 });
+      let play = document.getElementById("play");
+      if (e.target.id == "play_btn") {
+        id.style.background = "#fff";
+        play.style.display = "flex";
+        id.style.cursor = "pointer";
+        // id.style.zIndex = "-2";
+        gsap.to(follower, 0.3, { width: "6.5vw", height: "6.5vw" });
       } else {
+        play.style.display = "none";
         id.style.background = "red";
-        id.style.zIndex = "-1";
+        // id.style.zIndex = "-1";
         gsap.to(follower, 0.3, { width: 10, height: 10 });
       }
     };
@@ -45,7 +51,11 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.variable}>
         <React.Fragment>
-          <div className="follower" id="follower"></div>
+          <div className="follower" id="follower">
+            <p className="follower_play_btn" id="play">
+              PLAY
+            </p>
+          </div>
           <Navbar />
           {children}
         </React.Fragment>
