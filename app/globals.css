@@ -269,6 +269,7 @@
       position: relative;
       width: 50vw;
       height: 30vw;
+      object-fit: cover;
     }
     .play_btn {
       position: absolute;

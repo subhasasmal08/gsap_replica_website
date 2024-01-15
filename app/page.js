@@ -20,7 +20,7 @@ function App() {
         end: "500% 0%",
         pin: "#ImgWrapper",
         scrub: 2.2,
-        markers: true,
+        // markers: true,
       },
     });
     LandingPageScrollTrigger.to(
@@ -91,6 +91,17 @@ function App() {
     console.log(data);
     console.log(output);
   }
+
+  const playVideo = () => {
+    var video = document.getElementById("video_player");
+    video.addEventListener("click", function (event) {
+      if (video.paused == true) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
+  };
 
   return (
     <div className="main_page_wrapper">
@@ -232,18 +243,25 @@ function App() {
       <div className="video_player_wrapper">
         <p className="about_">ABOUT US</p>
         <video
-          poster="https://upload.wikimedia.org/wikipedia/commons/4/46/Bear_Alaska_%283%29.jpg"
+          poster="https://stop.es/wp-content/uploads/2017/10/stop-staff-abene-mendizabal.png"
           className="video_"
           preload="none"
           muted="muted"
           playsInline
+          id="video_player"
           src="https://spaincollection.com/wp-content/uploads/2020/11/Abene_Home.mp4"
         />
         <img
           id="play_btn"
           className="play_btn"
           src="https://spaincollection.com/wp-content/themes/spaincollection/img/player.svg"
+          onClick={() => {
+            console.log("click");
+            playVideo();
+          }}
         />
+        <p>Abene Mendizabal</p>
+        <p>Founder & CEO Spain Collection</p>
       </div>
     </div>
   );
