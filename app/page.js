@@ -1,12 +1,61 @@
 "use client";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import thumbnail from "../public/Assets/Images/thumbnail.png";
 import Image from "next/image";
+import Modal from "./components/Modal/Modal";
 function App() {
   gsap.registerPlugin(ScrollTrigger);
 
+  const [OpenVideoModal, setOpenVideoModal] = useState(false);
+  const [currentAmbassadorVideo, setCurrentAmbassadorVideo] = useState("");
+
+  useEffect(() => {
+    console.log("useeffect");
+    OpenVideoModal
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "scroll");
+  }, [OpenVideoModal]);
+
+  const ambassadorArr = [
+    {
+      name: "Eneko Atxa",
+      desc: "3 Michelin Stars",
+      poster:
+        "https://spaincollection.com/wp-content/uploads/2020/10/caratula_eneko.jpg",
+      src: "https://spaincollection.com/wp-content/uploads/2020/10/eneko_atxa.mp4",
+    },
+    {
+      name: "Pedro Subijana",
+      desc: "3 Michelin Stars",
+      poster:
+        "https://spaincollection.com/wp-content/uploads/2020/10/caratula_pedro.jpg",
+      src: "https://spaincollection.com/wp-content/uploads/2020/10/Akelarre-1.mp4",
+    },
+    {
+      name: "Germán Jiménez",
+      desc: "Journalist specialized in Fashion & Lifestyle",
+      poster:
+        "https://spaincollection.com/wp-content/uploads/2020/12/caratula_german.jpg",
+      src: "https://spaincollection.com/wp-content/uploads/2020/12/German-gimenez.mp4",
+    },
+  ];
+
+  const whyArr = [
+    {
+      desc: "Because our passion is people, travel and our country, it’s what makes us get out of bed in the morning.",
+      src: "https://spaincollection.com/wp-content/uploads/2020/10/modulo_Why_11.jpg",
+    },
+    {
+      desc: "Because nothing is more fulfilling than creating something from scratch and seeing it come to life.",
+      src: "https://spaincollection.com/wp-content/uploads/2020/10/Capa-1.jpg",
+    },
+    {
+      desc: "Because of that blissful moment, after months of planning, when your clients thank you for giving them have the time of their lives.",
+      src: "https://spaincollection.com/wp-content/uploads/2020/11/Capa-3.jpg",
+    },
+  ];
   function LandingPageScrollTrigger() {
     gsap.to("body", {
       opacity: 1,
@@ -46,11 +95,19 @@ function App() {
       .to("#ImgWrapper #img1", { transform: "translateZ(2200px)" }, 0)
       .from("#end div", { y: 130, opacity: 0, backgroundColor: "#000" }, 0.31);
   }
-
   window.onload = () => {
-    LandingPageScrollTrigger();
+    !OpenVideoModal && LandingPageScrollTrigger();
+    gsap.to("#ambassadors_wrapper", {
+      backgroundColor: "#fff",
+      scrollTrigger: {
+        trigger: "#ambassadors_wrapper",
+        start: "0% 0%",
+        end: "60% 0%",
+        // markers: true,
+        scrub: true,
+      },
+    });
   };
-  const inputRef = useRef();
 
   function submit(e) {
     const data = {};
@@ -92,15 +149,13 @@ function App() {
     console.log(output);
   }
 
-  const playVideo = () => {
+  const playVideo = (videoId) => {
     var video = document.getElementById("video_player");
-    video.addEventListener("click", function (event) {
-      if (video.paused == true) {
-        video.play();
-      } else {
-        video.pause();
-      }
-    });
+    var play_btn = document.getElementById("play_btn");
+    video.play();
+    video.controls = true;
+    play_btn.style.display = "none";
+    console.log(video.pause());
   };
 
   return (
@@ -240,8 +295,8 @@ function App() {
           </div>
         </div> */}
       </div>
-      <div className="video_player_wrapper">
-        <p className="about_">ABOUT US</p>
+      <div className="about_us_wrapper">
+        <p className="about_">about us</p>
         <video
           poster="https://stop.es/wp-content/uploads/2017/10/stop-staff-abene-mendizabal.png"
           className="video_"
@@ -260,9 +315,63 @@ function App() {
             playVideo();
           }}
         />
-        <p>Abene Mendizabal</p>
-        <p>Founder & CEO Spain Collection</p>
+        <p className="name">Abene Mendizabal</p>
+        <p className="role">Founder & CEO Spain Collection</p>
       </div>
+      <div id="ambassadors_wrapper" className="ambassadors_wrapper">
+        <p className="ambassaodors_">ambassaodors</p>
+        <div className="ambassadors_video_wrapper">
+          {ambassadorArr.map((item) => {
+            return (
+              <div className="card_">
+                <video poster={item.poster} src={item.src} />
+                <img
+                  id="play_btn"
+                  className="play_btn"
+                  src="https://spaincollection.com/wp-content/themes/spaincollection/img/player.svg"
+                  onClick={() => {
+                    console.log("click");
+                    setOpenVideoModal(true);
+                    setCurrentAmbassadorVideo(item.src);
+                  }}
+                />
+                <p className="name">{item.name}</p>
+                <p className="role">{item.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div id="why" className="why_wrapper">
+        <p className="why_tag">why CHOOSE SPAIN COLLEC-TION?</p>
+        <div className="why_images">
+          {whyArr.map((item, index) => {
+            return (
+              <div className="card_">
+                <img className="card_images"src={item.src} />
+                <p className="num_">{"0" + (index + 1) + "/"}</p>
+                <p className="desc_">{item.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {OpenVideoModal && (
+        <Modal
+          className={"ambassador_video_modal"}
+          onClose={() => setOpenVideoModal(false)}
+        >
+          <video
+            className="video_"
+            controls
+            autoPlay
+            playsInline
+            style={{ objectFit: "cover" }}
+            src={currentAmbassadorVideo}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

@@ -1,0 +1,64 @@
+@use "sass:math";
+$desk: math.div(100, 1920);
+.emai_modal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 555;
+  overflow: hidden;
+  .backdrop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    background-color: rgb(0, 0, 0);
+    display: block;
+    opacity: 0.9;
+  }
+  .modal_content,
+  .confirm_modal_content {
+    position: absolute;
+    // transform: translate(-50%, -50%);
+    // top: 50%;
+    // left: 50%;
+    // z-index: 556;
+    min-width: 300 * $desk + vw;
+    min-height: 300 * $desk + vw;
+    background-color: var(--body-background);
+    border-radius: 12 * $desk + vw;
+    // animation: roadRunnerIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    padding: 12 * $desk + vw;
+    .modal_close {
+      position: absolute;
+      top: -16%;
+      right: -39%;
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+      &:active {
+        animation: press 0.2s 1 linear;
+      }
+    }
+    .confirm_modal {
+      width: 450px;
+      ._confirm_header {
+        margin-top: -10px;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 99%;
+        color: #ec2120;
+      }
+      ._confirm_msg {
+        font-weight: 500;
+        margin-top: 16px;
+        font-size: 14px;
+        line-height: 120%;
+      }
+    }
+  }
+}
