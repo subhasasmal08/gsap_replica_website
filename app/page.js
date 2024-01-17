@@ -12,12 +12,10 @@ function App() {
   const [currentAmbassadorVideo, setCurrentAmbassadorVideo] = useState("");
 
   useEffect(() => {
-    console.log("useeffect");
     OpenVideoModal
       ? (document.body.style.overflow = "hidden")
       : (document.body.style.overflow = "scroll");
   }, [OpenVideoModal]);
-
   const ambassadorArr = [
     {
       name: "Eneko Atxa",
@@ -56,6 +54,7 @@ function App() {
       src: "https://spaincollection.com/wp-content/uploads/2020/11/Capa-3.jpg",
     },
   ];
+
   function LandingPageScrollTrigger() {
     gsap.to("body", {
       opacity: 1,
@@ -95,6 +94,7 @@ function App() {
       .to("#ImgWrapper #img1", { transform: "translateZ(2200px)" }, 0)
       .from("#end div", { y: 130, opacity: 0, backgroundColor: "#000" }, 0.31);
   }
+
   window.onload = () => {
     !OpenVideoModal && LandingPageScrollTrigger();
     gsap.to("#ambassadors_wrapper", {
@@ -106,6 +106,60 @@ function App() {
         // markers: true,
         scrub: true,
       },
+    });
+
+    gsap.to("#why_cards0", {
+      y: -500,
+      scrollTrigger: {
+        trigger: "#why_cards0",
+        start: "-80% 0%",
+        end: "80% 0%",
+        markers: true,
+        scrub: 2.2,
+      },
+    });
+    gsap.to("#why_cards1", {
+      y: -500,
+      scrollTrigger: {
+        trigger: "#why_cards1",
+        start: "-40% 0%",
+        end: "80% 0%",
+        markers: true,
+        scrub: 2.2,
+      },
+    });
+    gsap.to("#why_cards2", {
+      y: -500,
+      scrollTrigger: {
+        trigger: "#why_cards2",
+        start: "-80% 0%",
+        end: "80% 0%",
+        markers: true,
+        scrub: 2.2,
+      },
+    });
+
+    gsap.set(".marquee__line", { x: "-0%" });
+
+    const mq = document.querySelectorAll(".marquee__line");
+
+    mq.forEach((el, index) => {
+      const tl = gsap.timeline({});
+      const tween = gsap.to(el, {
+        x: index % 2 === 0 ? `+=28%` : `-=27%`,
+        repeat: -1,
+        duration: 20,
+        ease: "linear",
+        // scrollTrigger: {
+        //   start: 0,
+        //   end: 'max',
+        //   markers: true,
+        //   onUpdate: () => {
+        //     tl.timeScale(2);
+        //     tween.invalidate().restart();
+        //   },
+        // },
+      });
     });
   };
 
@@ -347,13 +401,49 @@ function App() {
         <div className="why_images">
           {whyArr.map((item, index) => {
             return (
-              <div className="card_">
-                <img className="card_images"src={item.src} />
+              <div id={"why_cards" + index} className="card_">
+                <img className="card_images" src={item.src} />
                 <p className="num_">{"0" + (index + 1) + "/"}</p>
                 <p className="desc_">{item.desc}</p>
               </div>
             );
           })}
+        </div>
+        <div className="marquee-wrapper">
+          <p className="marquee__line">
+            {[
+              "Madrid",
+              "-",
+              "Barcelona",
+              "-",
+              "Lisbon",
+              "-",
+              "Porto",
+              "-",
+              "Valencia",
+              "-",
+              "Algarve",
+            ].map((item) => {
+              return <p className="marquee__item">{item}</p>;
+            })}
+          </p>
+          <p className="marquee__line">
+            {[
+              "Culture",
+              "-",
+              "Food&Wine",
+              "-",
+              "Shopping",
+              "-",
+              "Fashion",
+              "-",
+              "Sports",
+              "-",
+              "Traditions",
+            ].map((item) => {
+              return <p className="marquee__item">{item}</p>;
+            })}
+          </p>
         </div>
       </div>
 
