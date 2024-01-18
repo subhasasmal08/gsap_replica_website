@@ -6,10 +6,9 @@ import thumbnail from "../public/Assets/Images/thumbnail.png";
 import Image from "next/image";
 import Modal from "./components/Modal/Modal";
 function App() {
-  gsap.registerPlugin(ScrollTrigger);
-
   const [OpenVideoModal, setOpenVideoModal] = useState(false);
   const [currentAmbassadorVideo, setCurrentAmbassadorVideo] = useState("");
+  gsap.registerPlugin(ScrollTrigger);
 
   useEffect(() => {
     OpenVideoModal
@@ -52,6 +51,57 @@ function App() {
     {
       desc: "Because of that blissful moment, after months of planning, when your clients thank you for giving them have the time of their lives.",
       src: "https://spaincollection.com/wp-content/uploads/2020/11/Capa-3.jpg",
+    },
+  ];
+
+  const discoverArr = [
+    {
+      header: "Food & Wine IN Barcelona",
+      subheader: "Michelin Stars Galore",
+      desc: "Catalonia has some of the best restaurants in the world. Here is where the whole concept of cuisine was transformed, where the first laboratory of modern cuisine was created.",
+      src: "https://spaincollection.com/wp-content/uploads/2020/10/01-278.jpg",
+    },
+    {
+      header: "Fashion & Shopping IN Andalusia",
+      subheader: "Flamenco Fashion",
+      desc: "The world of Flamenco is so rich that it not only encompasses dancing, music and art, but it also has a huge influence on Spanish fashion. Experience for yourself how a flamenco dress is not simply something you ‘wear’, it is about posture, the way you move and the way you feel.",
+      src: "https://spaincollection.com/wp-content/uploads/2020/10/01-91.jpg",
+    },
+    {
+      header: "Culture  IN Barcelona",
+      subheader:
+        "Gaudi, the genius of Modernist architecture, was a revolutionary Catalan artist who incorporated nature’s geometry into wondrous shapes and buildings known and admired today across the world.",
+      src: "https://spaincollection.com/wp-content/uploads/2020/10/01-303.jpg",
+    },
+    {
+      header: "Sports in portugal",
+      subheader: "Snorkeling with Seahorses",
+      desc: "The waterways and lagoons of the Ria Formosa Natural Park are a delight in themselves but let’s also discover the underwater world of the Algarve, and the area’s fascinating seahorse population.",
+      src: "https://spaincollection.com/wp-content/uploads/2020/10/01-466.jpg",
+    },
+    {
+      header: "culture in madrid",
+      subheader: "Cervantes, A Timeless Literary Journey",
+      desc: "Cervantes and his Don Quixote are arguably as universal as characters can get. No other fictional character has been so notorious and influential as the man from La Mancha.",
+      src: "https://spaincollection.com/wp-content/uploads/2020/10/01-182.jpg",
+    },
+    {
+      header: "traditions in madrid",
+      subheader: "ceramics of talavera",
+      desc: "Talavera is home to communities of artisans who make ceramics for decorative and architectural use. The most significant aspect of their work, however, is that most of their manufacturing, decoration and glazing processes have remained unchanged since the 16th century.",
+      src: "https://spaincollection.com/wp-content/uploads/2020/10/009-scaled.jpg",
+    },
+    {
+      header: "sports in madrid",
+      subheader: "A real madrid experience",
+      desc: "Football is an obsession for the Spanish and seeing Real Madrid in action tops the must-see list for any sports aficionado visiting the capital of Spain.",
+      src: "https://spaincollection.com/wp-content/uploads/2020/10/01-213.jpg",
+    },
+    {
+      header: "fashion & shopping in andalusia",
+      subheader: "flamenco catwalk",
+      desc: "The catwalk is where fashion comes alive. Be a model for a day and lose yourself in the backstage world of nerves and frenetic preparations before stepping out into the spotlights and onto the catwalk.",
+      src: "https://spaincollection.com/wp-content/uploads/2020/10/01-96.jpg",
     },
   ];
 
@@ -139,14 +189,14 @@ function App() {
       },
     });
 
-    gsap.set(".marquee__line", { x: "-0%" });
+    gsap.set(".marquee__line", { x: "0%" });
 
     const mq = document.querySelectorAll(".marquee__line");
 
     mq.forEach((el, index) => {
       const tl = gsap.timeline({});
       const tween = gsap.to(el, {
-        x: index % 2 === 0 ? `+=28%` : `-=27%`,
+        x: index % 2 === 0 ? `+=30%` : `-=30%`,
         repeat: -1,
         duration: 20,
         ease: "linear",
@@ -410,41 +460,51 @@ function App() {
           })}
         </div>
         <div className="marquee-wrapper">
-          <p className="marquee__line">
+          <p className="marquee__line" style={{ top: "0%" }}>
             {[
               "Madrid",
-              "-",
               "Barcelona",
-              "-",
               "Lisbon",
-              "-",
               "Porto",
-              "-",
               "Valencia",
-              "-",
               "Algarve",
             ].map((item) => {
               return <p className="marquee__item">{item}</p>;
             })}
           </p>
-          <p className="marquee__line">
+          <p className="marquee__line" style={{ bottom: "30%" }}>
             {[
               "Culture",
-              "-",
               "Food&Wine",
-              "-",
               "Shopping",
-              "-",
               "Fashion",
-              "-",
               "Sports",
-              "-",
               "Traditions",
             ].map((item) => {
               return <p className="marquee__item">{item}</p>;
             })}
           </p>
         </div>
+      </div>
+      <div className="discover_wrapper">
+        <p className="discover_sent">
+          Discover the luxury of travelling with us
+        </p>
+        <div className="discover_slider">
+          {discoverArr.map((item) => {
+            return (
+              <div className="slider_card">
+                <p className="header_">{item.header}</p>
+                <p className="subheader_">{item.subheader}</p>
+                <p className="desc_">{item.desc}</p>
+                <img className="image_" src={item.src} />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div>
+
       </div>
 
       {OpenVideoModal && (

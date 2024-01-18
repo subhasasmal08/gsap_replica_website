@@ -397,6 +397,8 @@ body.modal-open {
   }
 
   .marquee-wrapper {
+    position: absolute;
+    bottom: -30vw;
     .marquee__line {
       display: flex;
       gap: 14px;
@@ -407,6 +409,72 @@ body.modal-open {
         line-height: 0.8;
         text-align: center;
         text-transform: uppercase;
+        margin: 0px 50px;
+      }
+      .marquee__item::after {
+        content: "";
+        width: 5vw;
+        height: 1px;
+        background-color: #000;
+        position: absolute;
+        top: 35%;
+      }
+    }
+  }
+
+  .discover_wrapper {
+    padding: 10vw 0 0 10vw;
+    height: 55vw;
+    position: relative;
+    width: 100%;
+    margin: auto;
+    background-color: #060707;
+    margin-top: 35vw;
+    .discover_sent {
+      width: 22vw;
+      color: #fff;
+      font-weight: 300;
+      font-size: 3.5vw;
+      line-height: 0.95;
+      display: flex;
+      justify-content: start;
+      font-family: var(--font-primary);
+    }
+
+    .discover_slider {
+      width: 220vw;
+      overflow-x: scroll;
+      display: flex;
+      gap: 10px;
+      overflow: hidden;
+      .slider_card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        margin-right: 2.5vw;
+        width: 25vw;
+        height: 35vw;
+        position: relative;
+        color: #fff;
+        .header_ {
+          z-index: 1;
+          position: absolute;
+        }
+        .subheader_ {
+          z-index: 1;
+          position: absolute;
+        }
+        .desc_ {
+          z-index: 1;
+          position: absolute;
+        }
+        .image_ {
+          position: absolute;
+          object-fit: cover;
+          width: 25vw;
+          height: 35vw;
+        }
       }
     }
   }
