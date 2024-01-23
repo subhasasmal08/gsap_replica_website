@@ -479,6 +479,30 @@ body.modal-open {
     }
   }
 
+  .footer_wrapper {
+    padding: 8vw 0 5vw;
+    background-color: #fff;
+
+    .footer_header {
+      font-size: 7vw;
+      line-height: 0.8;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 300;
+      font-family: var(--font-primary);
+      position: relative;
+
+    }
+    .footer_header::after {
+      content: "";
+      width: 5vw;
+      height: 1px;
+      background-color: #000;
+      position: absolute;
+      top: 35%;
+    }
+  }
+
   .ambassador_video_modal {
     .modal_content {
       .video_ {

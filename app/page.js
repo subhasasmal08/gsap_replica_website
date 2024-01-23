@@ -503,9 +503,18 @@ function App() {
           })}
         </div>
       </div>
-      <div>
-
+      <div className="footer_wrapper">
+        <p className="footer_header">CONTACT WITH SPAIN COLLECTION</p>
+        <div className="footer_mid_wrapper">
+          <p>travel@spaincollection</p>
+          <ul>
+            <li>instagram</li>
+            <li>facebook</li>
+            <li>linkedin</li>
+          </ul>
+        </div>
       </div>
+      <div></div>
 
       {OpenVideoModal && (
         <Modal
