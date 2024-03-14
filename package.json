@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "file-loader": "^6.2.0",
     "gsap": "^3.12.4",
     "next": "14.0.4",
+    "next-images": "^1.8.5",
+    "next-videos": "^1.4.1",
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.69.7"

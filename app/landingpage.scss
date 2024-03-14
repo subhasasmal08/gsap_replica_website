@@ -1,0 +1,378 @@
+.main_page_wrapper {
+    .main_page_desc {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      .desc_ {
+        font-family: var(--font-primary);
+        color: #0e0e0d;
+        font-size: 2.73vw;
+        line-height: 1.1;
+        overflow: hidden;
+        margin-top: 3.8vw;
+        margin-bottom: 4.5vw;
+        text-align: center;
+        width: 56vw;
+      }
+      .country_ {
+        font-family: var(--font-primary);
+        color: #0e0e0d;
+        font-size: 7vw;
+        text-transform: uppercase;
+        line-height: 0.8;
+        font-style: italic;
+        line-height: 1.1;
+        overflow: hidden;
+        margin-top: 3.8vw;
+        text-align: center;
+        width: 56vw;
+        position: absolute;
+        top: 67%;
+        right: 21%;
+        z-index: 1;
+      }
+    }
+  
+    #ImgWrapper {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      perspective: 2200px;
+    }
+  
+    #ImgWrapper #img1 {
+      z-index: 1;
+      height: 50vh;
+      bottom: 30%;
+      left: -37%;
+      position: absolute;
+    }
+  
+    #ImgWrapper #img2 {
+      z-index: 1;
+      height: 50vh;
+      bottom: 30%;
+      right: -39%;
+      position: absolute;
+    }
+  
+    #ImgWrapper #img3 {
+      z-index: 3;
+      height: 25vh;
+      bottom: 61%;
+      right: 8%;
+      width: 23vw;
+      position: absolute;
+    }
+  
+    #ImgWrapper #img4 {
+      width: 23vw;
+      z-index: 4;
+      height: 30vh;
+      bottom: 57%;
+      left: 10%;
+      position: absolute;
+    }
+  
+    #ImgWrapper #img5 {
+      z-index: 5;
+      height: 75vh;
+      width: 30vw;
+      bottom: 5%;
+      left: 36%;
+      position: absolute;
+    }
+  
+    #ImgWrapper #img6 {
+      width: 23vw;
+      z-index: 6;
+      height: 25vh;
+      bottom: 24%;
+      left: 10%;
+      position: absolute;
+    }
+  
+    #ImgWrapper #img7 {
+      z-index: 7;
+      height: 30vh;
+      width: 23vw;
+      bottom: 25%;
+      right: 8%;
+      position: absolute;
+    }
+  
+    #end {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    #end div {
+      text-decoration: none;
+      font-weight: 400;
+    }
+  
+    #end div span {
+      font-weight: 700;
+      display: inline-block;
+    }
+    .name {
+      font-family: var(--font-secondary);
+      color: #fff;
+      margin-top: 2.6vw;
+      font-weight: 500;
+      font-size: 1vw;
+      line-height: 1;
+      text-align: center;
+    }
+  
+    .role {
+      font-family: var(--font-secondary);
+      color: #fff;
+      font-weight: 300;
+      font-size: 0.7vw;
+      line-height: 1;
+      text-align: center;
+      margin-top: 0.5vw;
+    }
+    .about_us_wrapper {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      .about_ {
+        color: #bf1826;
+        margin-bottom: 6.5vw;
+        text-transform: uppercase;
+      }
+      .video_ {
+        position: relative;
+        width: 50vw;
+        height: 30vw;
+        object-fit: cover;
+      }
+      .play_btn {
+        position: absolute;
+      }
+    }
+  
+    .ambassadors_wrapper {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      .ambassaodors_ {
+        color: #bf1826;
+        margin-bottom: 6.5vw;
+        text-transform: uppercase;
+      }
+      .ambassadors_video_wrapper {
+        width: 80vw;
+        height: 40vw;
+        margin: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        bottom: -15vw;
+        .card_ {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          width: 20vw;
+          height: 35vw;
+          cursor: pointer;
+  
+          .play_btn {
+            position: absolute;
+            top: 30%;
+            left: 30%;
+          }
+        }
+      }
+    }
+  
+    .why_wrapper {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 10vw 0 5vw;
+      .why_tag {
+        font-size: 14vw;
+        width: 56vw;
+        text-align: center;
+        font-family: var(--font-primary);
+        line-height: 0.8;
+        text-transform: capitalize;
+        word-break: break-word;
+        z-index: 10;
+      }
+      .why_images {
+        position: absolute;
+        top: 70%;
+        width: 80vw;
+        height: auto;
+        margin: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding-bottom: 15vw;
+        .card_ {
+          width: 20vw;
+          display: flex;
+          flex-direction: column;
+          justify-content: left;
+          .card_images {
+            object-fit: cover;
+            width: 100%;
+            height: 35vw;
+          }
+          .num_ {
+            margin-top: 2vw;
+            font-family: var(--font-secondary);
+            font-weight: 500;
+            font-size: 1.25vw;
+            color: #0e0e0d;
+          }
+          .desc_ {
+            width: 15vw;
+            margin-top: 0.25vw;
+            font-family: var(--font-secondary);
+            font-weight: 300;
+            font-size: 1.25vw;
+            color: #0e0e0d;
+          }
+        }
+      }
+    }
+  
+    .marquee-wrapper {
+      position: absolute;
+      bottom: -30vw;
+      .marquee__line {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        .marquee__item {
+          font-family: var(--font-primary);
+          font-size: 7vw;
+          line-height: 0.8;
+          text-align: center;
+          text-transform: uppercase;
+          margin: 0px 50px;
+        }
+        .marquee__item::after {
+          content: "";
+          width: 5vw;
+          height: 1px;
+          background-color: #000;
+          position: absolute;
+          top: 35%;
+        }
+      }
+    }
+  
+    .discover_wrapper {
+      padding: 10vw 0 0 10vw;
+      height: 55vw;
+      position: relative;
+      width: 100%;
+      margin: auto;
+      background-color: #060707;
+      margin-top: 35vw;
+      .discover_sent {
+        width: 22vw;
+        color: #fff;
+        font-weight: 300;
+        font-size: 3.5vw;
+        line-height: 0.95;
+        display: flex;
+        justify-content: start;
+        font-family: var(--font-primary);
+      }
+  
+      .discover_slider {
+        width: 220vw;
+        overflow-x: scroll;
+        display: flex;
+        gap: 10px;
+        overflow: hidden;
+        .slider_card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: start;
+          margin-right: 2.5vw;
+          width: 25vw;
+          height: 35vw;
+          position: relative;
+          color: #fff;
+          .header_ {
+            z-index: 1;
+            position: absolute;
+          }
+          .subheader_ {
+            z-index: 1;
+            position: absolute;
+          }
+          .desc_ {
+            z-index: 1;
+            position: absolute;
+          }
+          .image_ {
+            position: absolute;
+            object-fit: cover;
+            width: 25vw;
+            height: 35vw;
+          }
+        }
+      }
+    }
+  
+    .footer_wrapper {
+      padding: 8vw 0 5vw;
+      background-color: #fff;
+  
+      .footer_header {
+        font-size: 7vw;
+        line-height: 0.8;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 300;
+        font-family: var(--font-primary);
+        position: relative;
+  
+      }
+      .footer_header::after {
+        content: "";
+        width: 5vw;
+        height: 1px;
+        background-color: #000;
+        position: absolute;
+        top: 35%;
+      }
+    }
+  
+    .ambassador_video_modal {
+      .modal_content {
+        .video_ {
+          width: 50vw;
+          height: 30vw;
+        }
+      }
+    }
+  }

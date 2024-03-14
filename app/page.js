@@ -1,10 +1,27 @@
 "use client";
+import "./landingpage.scss";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
-import thumbnail from "../public/Assets/Images/thumbnail.png";
-import Image from "next/image";
 import Modal from "./components/Modal/Modal";
+import video from "../public/Assets/videos/home.mp4";
+import aboutus from "../public/Assets/videos/aboutus.mp4";
+import eneko from "../public/Assets/videos/eneko_atxa.mp4";
+import pedro from "../public/Assets/videos/Akelarre-1.mp4";
+import german from "../public/Assets/videos/German-gimenez.mp4";
+import why1 from "../public/Assets/Images/modulo_Why_11.webp";
+import why2 from "../public/Assets/Images/Capa-1.webp";
+import why3 from "../public/Assets/Images/Capa-3.webp";
+import discover1 from "../public/Assets/Images/01-278.webp";
+import discover2 from "../public/Assets/Images/01-91.webp";
+import discover3 from "../public/Assets/Images/01-303.webp";
+import discover4 from "../public/Assets/Images/01-466.webp";
+import discover5 from "../public/Assets/Images/01-182.webp";
+import discover6 from "../public/Assets/Images/009-scaled.webp";
+import discover7 from "../public/Assets/Images/01-213.webp";
+import discover8 from "../public/Assets/Images/01-96.webp";
+import { PlayButton } from "./helper/icons";
+import Image from "next/image";
 function App() {
   const [OpenVideoModal, setOpenVideoModal] = useState(false);
   const [currentAmbassadorVideo, setCurrentAmbassadorVideo] = useState("");
@@ -21,36 +38,36 @@ function App() {
       desc: "3 Michelin Stars",
       poster:
         "https://spaincollection.com/wp-content/uploads/2020/10/caratula_eneko.jpg",
-      src: "https://spaincollection.com/wp-content/uploads/2020/10/eneko_atxa.mp4",
+      src: eneko,
     },
     {
       name: "Pedro Subijana",
       desc: "3 Michelin Stars",
       poster:
         "https://spaincollection.com/wp-content/uploads/2020/10/caratula_pedro.jpg",
-      src: "https://spaincollection.com/wp-content/uploads/2020/10/Akelarre-1.mp4",
+      src: pedro,
     },
     {
       name: "Germán Jiménez",
       desc: "Journalist specialized in Fashion & Lifestyle",
       poster:
         "https://spaincollection.com/wp-content/uploads/2020/12/caratula_german.jpg",
-      src: "https://spaincollection.com/wp-content/uploads/2020/12/German-gimenez.mp4",
+      src: german,
     },
   ];
 
   const whyArr = [
     {
       desc: "Because our passion is people, travel and our country, it’s what makes us get out of bed in the morning.",
-      src: "https://spaincollection.com/wp-content/uploads/2020/10/modulo_Why_11.jpg",
+      src: why1,
     },
     {
       desc: "Because nothing is more fulfilling than creating something from scratch and seeing it come to life.",
-      src: "https://spaincollection.com/wp-content/uploads/2020/10/Capa-1.jpg",
+      src: why2,
     },
     {
       desc: "Because of that blissful moment, after months of planning, when your clients thank you for giving them have the time of their lives.",
-      src: "https://spaincollection.com/wp-content/uploads/2020/11/Capa-3.jpg",
+      src: why3,
     },
   ];
 
@@ -59,49 +76,49 @@ function App() {
       header: "Food & Wine IN Barcelona",
       subheader: "Michelin Stars Galore",
       desc: "Catalonia has some of the best restaurants in the world. Here is where the whole concept of cuisine was transformed, where the first laboratory of modern cuisine was created.",
-      src: "https://spaincollection.com/wp-content/uploads/2020/10/01-278.jpg",
+      src: discover1,
     },
     {
       header: "Fashion & Shopping IN Andalusia",
       subheader: "Flamenco Fashion",
       desc: "The world of Flamenco is so rich that it not only encompasses dancing, music and art, but it also has a huge influence on Spanish fashion. Experience for yourself how a flamenco dress is not simply something you ‘wear’, it is about posture, the way you move and the way you feel.",
-      src: "https://spaincollection.com/wp-content/uploads/2020/10/01-91.jpg",
+      src: discover2,
     },
     {
       header: "Culture  IN Barcelona",
       subheader:
         "Gaudi, the genius of Modernist architecture, was a revolutionary Catalan artist who incorporated nature’s geometry into wondrous shapes and buildings known and admired today across the world.",
-      src: "https://spaincollection.com/wp-content/uploads/2020/10/01-303.jpg",
+      src: discover3,
     },
     {
       header: "Sports in portugal",
       subheader: "Snorkeling with Seahorses",
       desc: "The waterways and lagoons of the Ria Formosa Natural Park are a delight in themselves but let’s also discover the underwater world of the Algarve, and the area’s fascinating seahorse population.",
-      src: "https://spaincollection.com/wp-content/uploads/2020/10/01-466.jpg",
+      src: discover4,
     },
     {
       header: "culture in madrid",
       subheader: "Cervantes, A Timeless Literary Journey",
       desc: "Cervantes and his Don Quixote are arguably as universal as characters can get. No other fictional character has been so notorious and influential as the man from La Mancha.",
-      src: "https://spaincollection.com/wp-content/uploads/2020/10/01-182.jpg",
+      src: discover5,
     },
     {
       header: "traditions in madrid",
       subheader: "ceramics of talavera",
       desc: "Talavera is home to communities of artisans who make ceramics for decorative and architectural use. The most significant aspect of their work, however, is that most of their manufacturing, decoration and glazing processes have remained unchanged since the 16th century.",
-      src: "https://spaincollection.com/wp-content/uploads/2020/10/009-scaled.jpg",
+      src: discover6,
     },
     {
       header: "sports in madrid",
       subheader: "A real madrid experience",
       desc: "Football is an obsession for the Spanish and seeing Real Madrid in action tops the must-see list for any sports aficionado visiting the capital of Spain.",
-      src: "https://spaincollection.com/wp-content/uploads/2020/10/01-213.jpg",
+      src: discover7,
     },
     {
       header: "fashion & shopping in andalusia",
       subheader: "flamenco catwalk",
       desc: "The catwalk is where fashion comes alive. Be a model for a day and lose yourself in the backstage world of nerves and frenetic preparations before stepping out into the spotlights and onto the catwalk.",
-      src: "https://spaincollection.com/wp-content/uploads/2020/10/01-96.jpg",
+      src: discover8,
     },
   ];
 
@@ -303,9 +320,7 @@ function App() {
           playsInline
           loop
           style={{ objectFit: "cover" }}
-          src={
-            "https://spaincollection.com/wp-content/uploads/2020/10/Bg_Home.mp4#t=00,02"
-          }
+          src={video + "#t=00,02"}
           id="img1"
           alt="greensocklogo"
         />
@@ -317,9 +332,7 @@ function App() {
           playsInline
           loop
           style={{ objectFit: "cover" }}
-          src={
-            "https://spaincollection.com/wp-content/uploads/2020/10/Bg_Home.mp4#t=03,04"
-          }
+          src={video + "#t=03,04"}
           id="img2"
           alt="greensocklogo"
         />
@@ -331,9 +344,7 @@ function App() {
           // playsInline
           loop
           style={{ objectFit: "cover" }}
-          src={
-            "https://spaincollection.com/wp-content/uploads/2020/10/Bg_Home.mp4#t=06,09"
-          }
+          src={video + "#t=06,09"}
           id="img3"
           alt="greensocklogo"
         />
@@ -345,9 +356,7 @@ function App() {
           playsInline
           loop
           style={{ objectFit: "cover" }}
-          src={
-            "https://spaincollection.com/wp-content/uploads/2020/10/Bg_Home.mp4#t=08,10"
-          }
+          src={video + "#t=08,10"}
           id="img4"
           alt="greensocklogo"
         />
@@ -359,9 +368,7 @@ function App() {
           playsInline
           loop
           style={{ objectFit: "cover" }}
-          src={
-            "https://spaincollection.com/wp-content/uploads/2020/10/Bg_Home.mp4"
-          }
+          src={video}
           id="img5"
           alt="greensocklogo"
         />
@@ -373,9 +380,7 @@ function App() {
           playsInline
           loop
           style={{ objectFit: "cover" }}
-          src={
-            "https://spaincollection.com/wp-content/uploads/2020/10/Bg_Home.mp4#t=01,03"
-          }
+          src={video + "#t=01,03"}
           id="img6"
           alt="greensocklogo"
         />
@@ -387,17 +392,10 @@ function App() {
           playsInline
           loop
           style={{ objectFit: "cover" }}
-          src={
-            "https://spaincollection.com/wp-content/uploads/2020/10/Bg_Home.mp4#t=05,07"
-          }
+          src={video + "#t=05,07"}
           id="img7"
           alt="greensocklogo"
         />
-        {/* <div className="video_player_wrapper" id="end">
-          <div>
-            <span>End</span>
-          </div>
-        </div> */}
       </div>
       <div className="about_us_wrapper">
         <p className="about_">about us</p>
@@ -408,12 +406,11 @@ function App() {
           muted="muted"
           playsInline
           id="video_player"
-          src="https://spaincollection.com/wp-content/uploads/2020/11/Abene_Home.mp4"
+          src={aboutus}
         />
-        <img
+        <PlayButton
           id="play_btn"
           className="play_btn"
-          src="https://spaincollection.com/wp-content/themes/spaincollection/img/player.svg"
           onClick={() => {
             console.log("click");
             playVideo();
@@ -429,10 +426,9 @@ function App() {
             return (
               <div className="card_">
                 <video poster={item.poster} src={item.src} />
-                <img
+                <PlayButton
                   id="play_btn"
                   className="play_btn"
-                  src="https://spaincollection.com/wp-content/themes/spaincollection/img/player.svg"
                   onClick={() => {
                     console.log("click");
                     setOpenVideoModal(true);
@@ -452,7 +448,7 @@ function App() {
           {whyArr.map((item, index) => {
             return (
               <div id={"why_cards" + index} className="card_">
-                <img className="card_images" src={item.src} />
+                <Image className="card_images" src={item.src} />
                 <p className="num_">{"0" + (index + 1) + "/"}</p>
                 <p className="desc_">{item.desc}</p>
               </div>
@@ -497,7 +493,7 @@ function App() {
                 <p className="header_">{item.header}</p>
                 <p className="subheader_">{item.subheader}</p>
                 <p className="desc_">{item.desc}</p>
-                <img className="image_" src={item.src} />
+                <Image className="image_" src={item.src} />
               </div>
             );
           })}
