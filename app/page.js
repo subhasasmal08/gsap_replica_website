@@ -20,8 +20,9 @@ import discover5 from "../public/Assets/Images/01-182.webp";
 import discover6 from "../public/Assets/Images/009-scaled.webp";
 import discover7 from "../public/Assets/Images/01-213.webp";
 import discover8 from "../public/Assets/Images/01-96.webp";
-import { PlayButton } from "./helper/icons";
+import { ArrowRight, PlayButton } from "./helper/icons";
 import Image from "next/image";
+import { Draggable } from "gsap/dist/Draggable";
 function App() {
   const [OpenVideoModal, setOpenVideoModal] = useState(false);
   const [currentAmbassadorVideo, setCurrentAmbassadorVideo] = useState("");
@@ -88,6 +89,8 @@ function App() {
       header: "Culture  IN Barcelona",
       subheader:
         "Gaudi, the genius of Modernist architecture, was a revolutionary Catalan artist who incorporated nature’s geometry into wondrous shapes and buildings known and admired today across the world.",
+      desc: "The world of Flamenco is so rich that it not only encompasses dancing, music and art, but it also has a huge influence on Spanish fashion. Experience for yourself how a flamenco dress is not simply something you ‘wear’, it is about posture, the way you move and the way you feel.",
+
       src: discover3,
     },
     {
@@ -228,6 +231,53 @@ function App() {
         // },
       });
     });
+
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(Draggable);
+      let sections = document.querySelectorAll(".slider_card");
+      let scrollContainer = document.querySelector(".discover_slider");
+      let clamp, dragRatio;
+
+      let scrollTween = gsap.to(sections, {
+        xPercent: -500 * (sections.length - 1),
+        ease: "none",
+      });
+
+      let horizontalScroll = ScrollTrigger.create({
+        animation: scrollTween,
+        trigger: scrollContainer,
+        pin: true,
+        scrub: 1,
+        end: () => "+=" + scrollContainer.offsetWidth,
+      });
+
+      var drag = Draggable?.create(".proxy", {
+        trigger: scrollContainer,
+        type: "x",
+        onPress() {
+          clamp || ScrollTrigger.refresh();
+          this.startScroll = horizontalScroll.scroll();
+        },
+        onDrag() {
+          horizontalScroll.scroll(
+            clamp(this.startScroll - (this.x - this.startX) * dragRatio)
+          );
+          // if you don't want it to lag at all while dragging (due to the 1-second scrub), uncomment the next line:
+          //horizontalScroll.getTween().progress(1);
+        },
+      })[0];
+
+      ScrollTrigger.addEventListener("refresh", () => {
+        clamp = gsap.utils.clamp(
+          horizontalScroll.start + 1,
+          horizontalScroll.end - 1
+        ); // don't let the drag-scroll hit the very start or end so that it doesn't unpin
+        // total scroll amount divided by the total distance that the sections move gives us the ratio we can apply to the pointer movement so that it fits.
+        dragRatio =
+          scrollContainer.offsetWidth /
+          (window.innerWidth * (sections.length - 1));
+      });
+    }
   };
 
   function submit(e) {
@@ -304,7 +354,7 @@ function App() {
           submit
         </button>
       </form> */}
-      <div className="main_page_desc">
+      {/* <div className="main_page_desc">
         <p className="desc_">
           Spain Collection is your expert partner for deluxe bespoke travel
           experiences in
@@ -481,7 +531,7 @@ function App() {
             })}
           </p>
         </div>
-      </div>
+      </div> */}
       <div className="discover_wrapper">
         <p className="discover_sent">
           Discover the luxury of travelling with us
@@ -490,14 +540,23 @@ function App() {
           {discoverArr.map((item) => {
             return (
               <div className="slider_card">
-                <p className="header_">{item.header}</p>
-                <p className="subheader_">{item.subheader}</p>
-                <p className="desc_">{item.desc}</p>
                 <Image className="image_" src={item.src} />
+
+                <div className="slider_wrapper">
+                  <p className="header_">{item.header}</p>
+                  <p className="subheader_">{item.subheader}</p>
+                  <div className="desc_">
+                    <p>{item.desc}</p>
+                    <div className="right_arrow">
+                      <ArrowRight className="right_" />
+                    </div>
+                  </div>
+                </div>
               </div>
             );
           })}
         </div>
+        <div className="proxy"></div>
       </div>
       <div className="footer_wrapper">
         <p className="footer_header">CONTACT WITH SPAIN COLLECTION</p>
