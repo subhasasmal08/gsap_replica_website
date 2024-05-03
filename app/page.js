@@ -165,6 +165,9 @@ function App() {
       .from("#end div", { y: 130, opacity: 0, backgroundColor: "#000" }, 0.31);
   }
 
+  
+
+if(typeof window.onload !== undefined){
   window.onload = () => {
     !OpenVideoModal && LandingPageScrollTrigger();
     gsap.to("#ambassadors_wrapper", {
@@ -184,7 +187,7 @@ function App() {
         trigger: "#why_cards0",
         start: "-80% 0%",
         end: "80% 0%",
-        markers: true,
+        // markers: true,
         scrub: 2.2,
       },
     });
@@ -194,7 +197,7 @@ function App() {
         trigger: "#why_cards1",
         start: "-40% 0%",
         end: "80% 0%",
-        markers: true,
+        // markers: true,
         scrub: 2.2,
       },
     });
@@ -204,7 +207,7 @@ function App() {
         trigger: "#why_cards2",
         start: "-80% 0%",
         end: "80% 0%",
-        markers: true,
+        // markers: true,
         scrub: 2.2,
       },
     });
@@ -248,7 +251,7 @@ function App() {
         trigger: scrollContainer,
         pin: true,
         scrub: 1,
-        end: () => "+=" + scrollContainer.offsetWidth,
+        end: () => "+=" + scrollContainer?.offsetWidth,
       });
 
       var drag = Draggable?.create(".proxy", {
@@ -274,11 +277,12 @@ function App() {
         ); // don't let the drag-scroll hit the very start or end so that it doesn't unpin
         // total scroll amount divided by the total distance that the sections move gives us the ratio we can apply to the pointer movement so that it fits.
         dragRatio =
-          scrollContainer.offsetWidth /
+          scrollContainer?.offsetWidth /
           (window.innerWidth * (sections.length - 1));
       });
     }
   };
+}
 
   function submit(e) {
     const data = {};
@@ -354,7 +358,7 @@ function App() {
           submit
         </button>
       </form> */}
-      {/* <div className="main_page_desc">
+       <div className="main_page_desc">
         <p className="desc_">
           Spain Collection is your expert partner for deluxe bespoke travel
           experiences in
@@ -515,7 +519,7 @@ function App() {
               "Valencia",
               "Algarve",
             ].map((item) => {
-              return <p className="marquee__item">{item}</p>;
+              return <span className="marquee__item">{item}</span>;
             })}
           </p>
           <p className="marquee__line" style={{ bottom: "30%" }}>
@@ -527,12 +531,12 @@ function App() {
               "Sports",
               "Traditions",
             ].map((item) => {
-              return <p className="marquee__item">{item}</p>;
+              return <span className="marquee__item">{item}</span>;
             })}
           </p>
         </div>
-      </div> */}
-      <div className="discover_wrapper">
+      </div> 
+      {/* <div className="discover_wrapper">
         <p className="discover_sent">
           Discover the luxury of travelling with us
         </p>
@@ -557,8 +561,8 @@ function App() {
           })}
         </div>
         <div className="proxy"></div>
-      </div>
-      <div className="footer_wrapper">
+      </div> */}
+      {/* <div className="footer_wrapper">
         <p className="footer_header">CONTACT WITH SPAIN COLLECTION</p>
         <div className="footer_mid_wrapper">
           <p>travel@spaincollection</p>
@@ -568,7 +572,7 @@ function App() {
             <li>linkedin</li>
           </ul>
         </div>
-      </div>
+      </div> */}
       <div></div>
 
       {OpenVideoModal && (
