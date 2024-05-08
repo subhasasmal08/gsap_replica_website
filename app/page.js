@@ -165,124 +165,125 @@ function App() {
       .from("#end div", { y: 130, opacity: 0, backgroundColor: "#000" }, 0.31);
   }
 
+  useEffect(() => {
+    window.onload = () => {
+      !OpenVideoModal && LandingPageScrollTrigger();
+      gsap.to("#ambassadors_wrapper", {
+        backgroundColor: "#fff",
+        scrollTrigger: {
+          trigger: "#ambassadors_wrapper",
+          start: "0% 0%",
+          end: "60% 0%",
+          // markers: true,
+          scrub: true,
+        },
+      });
+  
+      gsap.to("#why_cards0", {
+        y: -500,
+        scrollTrigger: {
+          trigger: "#why_cards0",
+          start: "-80% 0%",
+          end: "80% 0%",
+          // markers: true,
+          scrub: 2.2,
+        },
+      });
+      gsap.to("#why_cards1", {
+        y: -500,
+        scrollTrigger: {
+          trigger: "#why_cards1",
+          start: "-40% 0%",
+          end: "80% 0%",
+          // markers: true,
+          scrub: 2.2,
+        },
+      });
+      gsap.to("#why_cards2", {
+        y: -500,
+        scrollTrigger: {
+          trigger: "#why_cards2",
+          start: "-80% 0%",
+          end: "80% 0%",
+          // markers: true,
+          scrub: 2.2,
+        },
+      });
+  
+      gsap.set(".marquee__line", { x: "0%" });
+  
+      const mq = document.querySelectorAll(".marquee__line");
+  
+      mq.forEach((el, index) => {
+        const tl = gsap.timeline({});
+        const tween = gsap.to(el, {
+          x: index % 2 === 0 ? `+=30%` : `-=30%`,
+          repeat: -1,
+          duration: 20,
+          ease: "linear",
+          // scrollTrigger: {
+          //   start: 0,
+          //   end: 'max',
+          //   markers: true,
+          //   onUpdate: () => {
+          //     tl.timeScale(2);
+          //     tween.invalidate().restart();
+          //   },
+          // },
+        });
+      });
+  
+      if (typeof window !== "undefined") {
+        gsap.registerPlugin(Draggable);
+        let sections = document.querySelectorAll(".slider_card");
+        let scrollContainer = document.querySelector(".discover_slider");
+        let clamp, dragRatio;
+  
+        let scrollTween = gsap.to(sections, {
+          xPercent: -500 * (sections.length - 1),
+          ease: "none",
+        });
+  
+        let horizontalScroll = ScrollTrigger.create({
+          animation: scrollTween,
+          trigger: scrollContainer,
+          pin: true,
+          scrub: 1,
+          end: () => "+=" + scrollContainer?.offsetWidth,
+        });
+  
+        var drag = Draggable?.create(".proxy", {
+          trigger: scrollContainer,
+          type: "x",
+          onPress() {
+            clamp || ScrollTrigger.refresh();
+            this.startScroll = horizontalScroll.scroll();
+          },
+          onDrag() {
+            horizontalScroll.scroll(
+              clamp(this.startScroll - (this.x - this.startX) * dragRatio)
+            );
+            // if you don't want it to lag at all while dragging (due to the 1-second scrub), uncomment the next line:
+            //horizontalScroll.getTween().progress(1);
+          },
+        })[0];
+  
+        ScrollTrigger.addEventListener("refresh", () => {
+          clamp = gsap.utils.clamp(
+            horizontalScroll.start + 1,
+            horizontalScroll.end - 1
+          ); // don't let the drag-scroll hit the very start or end so that it doesn't unpin
+          // total scroll amount divided by the total distance that the sections move gives us the ratio we can apply to the pointer movement so that it fits.
+          dragRatio =
+            scrollContainer?.offsetWidth /
+            (window.innerWidth * (sections.length - 1));
+        });
+      }
+    };
+  }, [])
   
 
-if(typeof window.onload !== undefined){
-  window.onload = () => {
-    !OpenVideoModal && LandingPageScrollTrigger();
-    gsap.to("#ambassadors_wrapper", {
-      backgroundColor: "#fff",
-      scrollTrigger: {
-        trigger: "#ambassadors_wrapper",
-        start: "0% 0%",
-        end: "60% 0%",
-        // markers: true,
-        scrub: true,
-      },
-    });
 
-    gsap.to("#why_cards0", {
-      y: -500,
-      scrollTrigger: {
-        trigger: "#why_cards0",
-        start: "-80% 0%",
-        end: "80% 0%",
-        // markers: true,
-        scrub: 2.2,
-      },
-    });
-    gsap.to("#why_cards1", {
-      y: -500,
-      scrollTrigger: {
-        trigger: "#why_cards1",
-        start: "-40% 0%",
-        end: "80% 0%",
-        // markers: true,
-        scrub: 2.2,
-      },
-    });
-    gsap.to("#why_cards2", {
-      y: -500,
-      scrollTrigger: {
-        trigger: "#why_cards2",
-        start: "-80% 0%",
-        end: "80% 0%",
-        // markers: true,
-        scrub: 2.2,
-      },
-    });
-
-    gsap.set(".marquee__line", { x: "0%" });
-
-    const mq = document.querySelectorAll(".marquee__line");
-
-    mq.forEach((el, index) => {
-      const tl = gsap.timeline({});
-      const tween = gsap.to(el, {
-        x: index % 2 === 0 ? `+=30%` : `-=30%`,
-        repeat: -1,
-        duration: 20,
-        ease: "linear",
-        // scrollTrigger: {
-        //   start: 0,
-        //   end: 'max',
-        //   markers: true,
-        //   onUpdate: () => {
-        //     tl.timeScale(2);
-        //     tween.invalidate().restart();
-        //   },
-        // },
-      });
-    });
-
-    if (typeof window !== "undefined") {
-      gsap.registerPlugin(Draggable);
-      let sections = document.querySelectorAll(".slider_card");
-      let scrollContainer = document.querySelector(".discover_slider");
-      let clamp, dragRatio;
-
-      let scrollTween = gsap.to(sections, {
-        xPercent: -500 * (sections.length - 1),
-        ease: "none",
-      });
-
-      let horizontalScroll = ScrollTrigger.create({
-        animation: scrollTween,
-        trigger: scrollContainer,
-        pin: true,
-        scrub: 1,
-        end: () => "+=" + scrollContainer?.offsetWidth,
-      });
-
-      var drag = Draggable?.create(".proxy", {
-        trigger: scrollContainer,
-        type: "x",
-        onPress() {
-          clamp || ScrollTrigger.refresh();
-          this.startScroll = horizontalScroll.scroll();
-        },
-        onDrag() {
-          horizontalScroll.scroll(
-            clamp(this.startScroll - (this.x - this.startX) * dragRatio)
-          );
-          // if you don't want it to lag at all while dragging (due to the 1-second scrub), uncomment the next line:
-          //horizontalScroll.getTween().progress(1);
-        },
-      })[0];
-
-      ScrollTrigger.addEventListener("refresh", () => {
-        clamp = gsap.utils.clamp(
-          horizontalScroll.start + 1,
-          horizontalScroll.end - 1
-        ); // don't let the drag-scroll hit the very start or end so that it doesn't unpin
-        // total scroll amount divided by the total distance that the sections move gives us the ratio we can apply to the pointer movement so that it fits.
-        dragRatio =
-          scrollContainer?.offsetWidth /
-          (window.innerWidth * (sections.length - 1));
-      });
-    }
-  };
-}
 
   function submit(e) {
     const data = {};
